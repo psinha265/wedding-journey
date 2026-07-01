@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anushka & Parshva — Wedding Journey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ================= TOP BAR ================= -->
+  <header class="topbar">
+    <div class="brand">A&nbsp;&amp;&nbsp;P</div>
+
+    <div class="mode-toggle" id="modeToggle">
+      <button class="mode-btn active" data-mode="journey">Journey</button>
+      <button class="mode-btn" data-mode="itinerary">Itinerary</button>
+    </div>
+
+    <button class="mute-btn" id="muteBtn" aria-label="Mute music" title="Mute music">
+      <svg viewBox="0 0 24 24" width="17" height="17"><path id="muteIconOn" fill="currentColor" d="M3 10v4h4l5 5V5L7 10H3zm13.5 2c0-1.77-.77-3.29-2-4.28v8.56c1.23-.99 2-2.51 2-4.28z"/><path id="muteIconOff" fill="currentColor" style="display:none" d="M3 10v4h4l5 5V5L7 10H3zm11.59 2L17 14.41 19.41 12 17 9.59 14.59 12zM19.41 9.59 17 12l2.41 2.41 1.41-1.41L18.41 12l2.41-2.41z"/></svg>
+    </button>
+  </header>
+
+  <!-- ================= PROGRESS DOTS ================= -->
+  <div class="progress-dots" id="progressDots"></div>
+
+  <!-- ================= JOURNEY VIEW ================= -->
+  <main id="journeyView" class="view">
+    <div class="nav-arrow left" id="navLeft" aria-label="Back">&#8249;</div>
+    <div class="nav-arrow right" id="navRight" aria-label="Forward">&#8250;</div>
+    <div id="stepsContainer"><!-- steps injected by script.js --></div>
+  </main>
+
+  <!-- ================= ITINERARY VIEW ================= -->
+  <section id="itineraryView" class="view hidden">
+    <div class="itinerary-inner">
+      <div class="itinerary-title">The Full Itinerary</div>
+      <div class="itinerary-sub">Three days, five celebrations — Mumbai to Pushkar</div>
+      <div id="itineraryList"><!-- injected by script.js --></div>
+      <button class="rsvp-btn big" id="itineraryRsvpBtn">RSVP</button>
+    </div>
+  </section>
+
+  <!-- ================= FLOATING RSVP (journey mode) ================= -->
+  <button class="floating-rsvp" id="floatingRsvp">RSVP</button>
+</div>
+
+<!-- ================= RSVP MODAL ================= -->
+<div class="rsvp-overlay" id="rsvpOverlay">
+  <div class="rsvp-modal">
+    <button class="rsvp-close" id="rsvpClose" aria-label="Close RSVP form">&times;</button>
+
+    <div id="rsvpFormView">
+      <div class="rsvp-title">RSVP</div>
+      <p class="rsvp-sub">Let us know if you'll be celebrating with us</p>
+
+      <form id="rsvpForm" novalidate>
+        <label class="field">
+          <span>Full name*</span>
+          <input type="text" name="name" required>
+        </label>
+
+        <label class="field">
+          <span>Email*</span>
+          <input type="email" name="email" required>
+        </label>
+
+        <label class="field">
+          <span>Phone (optional)</span>
+          <input type="tel" name="phone">
+        </label>
+
+        <div class="field">
+          <span>Which day(s) will you join?*</span>
+          <div class="checkbox-group" id="rsvpDaysGroup"><!-- injected --></div>
+        </div>
+
+        <label class="field">
+          <span>Number of guests (including you)*</span>
+          <input type="number" name="guests" min="1" max="10" value="1" required>
+        </label>
+
+        <label class="field">
+          <span>Dietary restrictions / allergies</span>
+          <input type="text" name="dietary" placeholder="e.g. vegetarian, nut allergy">
+        </label>
+
+        <label class="field">
+          <span>Song request for the Sangeet? 🎶</span>
+          <input type="text" name="songRequest" placeholder="Optional — give us your dance floor pick">
+        </label>
+
+        <label class="field">
+          <span>Message for the couple</span>
+          <textarea name="message" rows="3" placeholder="Optional"></textarea>
+        </label>
+
+        <p class="rsvp-error" id="rsvpError"></p>
+
+        <button type="submit" class="rsvp-submit" id="rsvpSubmitBtn">Send RSVP</button>
+        <p class="rsvp-fallback">Trouble with the form? <a id="mailFallback" href="#">Email us your RSVP instead</a></p>
+      </form>
+    </div>
+
+    <div id="rsvpSuccessView" class="rsvp-success" style="display:none;">
+      <div class="success-icon">✓</div>
+      <div class="rsvp-title">Thank you!</div>
+      <p class="rsvp-sub">Your RSVP has been received.<br>We can't wait to celebrate with you.</p>
+      <button class="rsvp-submit" id="rsvpDoneBtn">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- background music players (crossfade between two) -->
+<audio id="audioA" preload="none" loop></audio>
+<audio id="audioB" preload="none" loop></audio>
+
+<script src="content.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
